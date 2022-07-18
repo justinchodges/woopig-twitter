@@ -1,12 +1,12 @@
 (function() {
-    var hasTwitterEmbeds = false;
-    var postLinks = document.querySelectorAll('.post a');
-    var twitterLinks = [];
+    let hasTwitterEmbeds = false;
+    const postLinks = document.querySelectorAll('.post a');
+    const twitterLinks = [];
 
-    if (postLinks.length === 0) return;
+    if (!postLinks || postLinks.length === 0) return;
 
-    for (var i = 0; i < postLinks.length; i++) {
-        var postLinkHref = postLinks[i].getAttribute('href');
+    for (let i = 0; i < postLinks.length; i++) {
+        let postLinkHref = postLinks[i].getAttribute('href');
 
         if (postLinkHref && postLinkHref !== '') {
             if (
@@ -25,7 +25,7 @@
 
     function addTwitterWidget() {
         if (hasTwitterEmbeds) {
-            var twitterWidget = document.createElement('script');
+            let twitterWidget = document.createElement('script');
             twitterWidget.setAttribute('src', 'https://platform.twitter.com/widgets.js');
             twitterWidget.setAttribute('async', true);
             twitterWidget.setAttribute('charset', 'utf-8');
@@ -39,8 +39,8 @@
             return;
         }
 
-        var link = twitterLinks[i];
-        var href = link.getAttribute('href');
+        let link = twitterLinks[i];
+        let href = link.getAttribute('href');
 
         // replace links for mobile Twitter or www with main domain
 
@@ -50,7 +50,7 @@
             // twitter is found in link, build twitter embed
 
             hasTwitterEmbeds = true;
-            var twitterEmbed = document.createElement('blockquote');
+            let twitterEmbed = document.createElement('blockquote');
             twitterEmbed.classList.add('twitter-tweet');
             twitterEmbed.innerHTML = '<a href="' + href + '">' + href + '</a>';
             link.replaceWith(twitterEmbed);
